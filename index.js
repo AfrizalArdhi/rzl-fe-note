@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const BASE_URL = "http://localhost:5000";
+    
     const notesContainer = document.getElementById("notesList");
     const saveButton = document.getElementById("saveNote");
     const titleInput = document.getElementById("noteTitle");
@@ -12,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔹 Fungsi untuk mengambil dan menampilkan catatan dari backend
     function fetchNotes() {
-        fetch("http://localhost:5000/notes")
+        fetch("${BASE_URL}/notes")
             .then(response => response.json())
             .then(data => {
                 notesContainer.innerHTML = "";
@@ -77,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        fetch("http://localhost:5000/create-notes", {
+        fetch("${BASE_URL}/create-notes", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -109,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        fetch(`http://localhost:5000/update-notes/${editingNoteId}`, {
+        fetch(`${BASE_URL}/update-notes/${editingNoteId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -129,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔹 Fungsi untuk menghapus catatan
     function deleteNote(id) {
-        fetch(`http://localhost:5000/delete-notes/${id}`, {
+        fetch(`${BASE_URL}/delete-notes/${id}`, {
                 method: "DELETE"
             })
             .then(response => response.json())

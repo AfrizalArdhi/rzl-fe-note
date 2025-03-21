@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const BASE_URL = "https://note-backend-954509048139.us-central1.run.app/";
+    const BASE_URL = "https://note-backend-954509048139.us-central1.run.app";
     
     const notesContainer = document.getElementById("notesList");
     const saveButton = document.getElementById("saveNote");
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔹 Fungsi untuk mengambil dan menampilkan catatan dari backend
     function fetchNotes() {
-        fetch("${BASE_URL}/notes")
+        fetch(`${BASE_URL}/notes`)
             .then(response => response.json())
             .then(data => {
                 notesContainer.innerHTML = "";
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        fetch("${BASE_URL}/create-notes", {
+        fetch(`${BASE_URL}/create-notes`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
